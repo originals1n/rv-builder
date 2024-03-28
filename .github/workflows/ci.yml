@@ -35,14 +35,14 @@ jobs:
           java -jar revanced-cli-4.5.0-all.jar \
             patch -b revanced-patches-4.4.0.jar \
             -m revanced-integrations-1.5.0.apk \
-            -o out.apk ./downloads/yt.apk
+            -o yt-revanced.apk ./downloads/yt.apk
           ls
 
-      - name: Upload modules to release
+      - name: Upload APK to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./build/*
-          release_name: ReVanced
+          file: ./yt*.apk
+          release_name: ReVanced Automated Build
           file_glob: true
           overwrite: true
