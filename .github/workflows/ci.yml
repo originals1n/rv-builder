@@ -30,7 +30,7 @@ jobs:
           chmod 777 apkmd
           ls
           ./apkmd apps.json
-          
+          ls
 
       - name: Start building
         run: |
@@ -42,10 +42,8 @@ jobs:
       - name: Upload modules to release
         uses: svenstaro/upload-release-action@v2
         with:
-          body: ${{ steps.get_output.outputs.BUILD_LOG }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./build/*
           release_name: ReVanced
-          tag: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
           file_glob: true
           overwrite: true
