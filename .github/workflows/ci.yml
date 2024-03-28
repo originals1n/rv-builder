@@ -30,7 +30,7 @@ jobs:
           chmod 777 apkmd
           ls
           ./apkmd apps.json
-          ls
+          ls ./downloads
 
       - name: Start building
         run: |
