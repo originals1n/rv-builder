@@ -1,12 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Latest Release</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #333; /* Setting default text color */
+        }
+
+        h1 {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            margin: 0;
+            text-align: center;
+            width: 100%; /* Ensuring the title is fully displayed */
+        }
+
+        #downloadButtons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .downloadButton {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .downloadButton:hover {
+            background-color: #0056b3;
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode body {
+            background-color: #333;
+            color: #f2f2f2; /* Changing text color to white in dark mode */
+        }
+
+        .dark-mode h1 {
+            background-color: #111;
+            color: #f2f2f2;
+        }
+
+        .dark-mode .downloadButton {
+            background-color: #444;
+            color: #f2f2f2;
+        }
+
+        .dark-mode .downloadButton:hover {
+            background-color: #666;
+        }
+    </style>
 </head>
+
 <body>
     <h1>Download Latest Release</h1>
+
     <div id="downloadButtons"></div>
 
     <script>
@@ -38,6 +106,12 @@
 
         // Call function to generate download buttons when the page loads
         window.onload = generateDownloadButtons;
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
     </script>
 </body>
+
 </html>

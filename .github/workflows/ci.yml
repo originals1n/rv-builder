@@ -1,4 +1,4 @@
-name: CI
+name: Build
 on:
   workflow_dispatch:
   schedule:
@@ -20,42 +20,23 @@ jobs:
           fetch-depth: 0
           submodules: true
 
-      - name: Update config
-        if: ${{ inputs.from_ci }}
+      - name: Getting Tools
         run: |
-          if git checkout origin/update build.md; then
-            UPDATE_CFG=$(./build.sh config.toml --config-update)
-            if [ "$UPDATE_CFG" ]; then
-              echo "$UPDATE_CFG" > config.toml
-            fi
-          fi
+          sudo apt install wget curl
+          wget https://github.com/ReVanced/revanced-cli/releases/download/v4.5.0/revanced-cli-4.5.0-all.jar
+          wget https://github.com/ReVanced/revanced-patches/releases/download/v4.4.0/revanced-patches-4.4.0.jar
+          wget https://github.com/ReVanced/revanced-integrations/releases/download/v1.5.0/revanced-integrations-1.5.0.apk
+          wget https://github.com/tanishqmanuja/apkmirror-downloader/releases/download/v1.0.4/apkmd
+          chmod 777 apkmd
+          apkmd apps.json
+          lss
 
-      - name: Get next version code
-        id: next_ver_code
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Start building
         run: |
-          TAG=$(gh release list -L 1 | awk -F '\t' '{print $3}')
-          if [ -z "$TAG" ]; then TAG=0; fi
-          echo "NEXT_VER_CODE=$((TAG + 1))" >> $GITHUB_OUTPUT
-
-      - name: Build modules/APKs
-        run: |
-          chmod 777 build.sh
-          ./build.sh config.toml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: $GITHUB_REPOSITORY
-          NEXT_VER_CODE: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
-
-      - name: Get output
-        id: get_output
-        run: |
-          DELIM="$(openssl rand -hex 8)"
-          echo "BUILD_LOG<<${DELIM}" >> "$GITHUB_OUTPUT"
-          cat build.md >> "$GITHUB_OUTPUT"
-          echo "${DELIM}" >> "$GITHUB_OUTPUT"
-          cp -f build.md build.tmp
+          java -jar revanced-cli-4.5.0-all.jar \
+            patch -b revanced-patches-4.4.0.jar \
+            -m revanced-integrations-1.5.0.apk \
+            -o out.apk youtube.apk
 
       - name: Upload modules to release
         uses: svenstaro/upload-release-action@v2
