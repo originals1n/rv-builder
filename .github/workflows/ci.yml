@@ -37,7 +37,7 @@ jobs:
           java -jar revanced-cli-4.5.0-all.jar \
             patch -b revanced-patches-4.4.0.jar \
             -m revanced-integrations-1.5.0.apk \
-            -o out.apk youtube.apk
+            -o out.apk ./downloads/yt.apk
 
       - name: Upload modules to release
         uses: svenstaro/upload-release-action@v2
