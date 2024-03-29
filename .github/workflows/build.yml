@@ -5,7 +5,7 @@ on:
     - cron: "0 */6 * * *"
 
 jobs:
-  check:
+  run:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
