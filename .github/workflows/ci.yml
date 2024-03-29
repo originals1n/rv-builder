@@ -38,14 +38,22 @@ jobs:
             -o yt-revanced.apk ./downloads/yt.apk
           ls
           
-      - name: Start building YT
+      - name: Start building YTM
         run: |
           java -jar revanced-cli-4.5.0-all.jar \
             patch -b revanced-patches-4.4.0.jar \
             -m revanced-integrations-1.5.0.apk \
             -o ytm-revanced.apk ./downloads/ytm.apk
           ls
-          
+
+      - name: Start building YTM
+        run: |
+          java -jar revanced-cli-4.5.0-all.jar \
+            patch -b revanced-patches-4.4.0.jar \
+            -m revanced-integrations-1.5.0.apk \
+            -o tiktok-revanced.apk ./downloads/tiktok.apk
+          ls
+        
       - name: Upload APK to release
         uses: svenstaro/upload-release-action@v2
         with:
