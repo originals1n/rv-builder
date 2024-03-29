@@ -43,15 +43,7 @@ jobs:
             patch -b revanced-patches-4.4.0.jar \
             -m revanced-integrations-1.5.0.apk \
             -o ytm-revanced.apk ./downloads/ytm.apk
-          ls ./downloads/
-
-      - name: Start building TikTok
-        run: |
-          java -jar revanced-cli-4.5.0-all.jar \
-            patch -b revanced-patches-4.4.0.jar \
-            -m revanced-integrations-1.5.0.apk \
-            -o tiktok-revanced.apk ./downloads/tiktok.apk
-        
+          
       - name: Upload APK to release
         uses: svenstaro/upload-release-action@v2
         with:
