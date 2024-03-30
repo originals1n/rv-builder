@@ -32,7 +32,7 @@ jobs:
         run: |
           java -jar revanced-cli-4.5.0-all.jar \
             patch -b revanced-patches-4.4.0.jar \
-            -m revanced-integrations-1.5.0.apk \
+            -m revanced-integrations-1.6.0.apk \
             -o yt-revanced.apk ./downloads/yt.apk
           
       - name: Start building YTM
