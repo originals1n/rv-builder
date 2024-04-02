@@ -21,8 +21,8 @@ jobs:
       - name: Getting Tools
         run: |
           sudo apt install wget curl
-          wget https://github.com/ReVanced/revanced-cli/releases/download/v4.5.0/revanced-cli-4.5.0-all.jar
-          wget https://github.com/ReVanced/revanced-patches/releases/download/v4.5.0/revanced-patches-4.5.0.jar
+          wget https://github.com/ReVanced/revanced-cli/releases/download/v4.6.0/revanced-cli-4.6.0-all.jar
+          wget https://github.com/ReVanced/revanced-patches/releases/download/v4.6.0/revanced-patches-4.6.0.jar
           wget https://github.com/ReVanced/revanced-integrations/releases/download/v1.7.0/revanced-integrations-1.7.0.apk
           wget https://github.com/tanishqmanuja/apkmirror-downloader/releases/download/v1.0.4/apkmd
           chmod 777 apkmd
@@ -30,15 +30,15 @@ jobs:
 
       - name: Start building YT
         run: |
-          java -jar revanced-cli-4.5.0-all.jar \
-            patch -b revanced-patches-4.5.0.jar \
+          java -jar revanced-cli-4.6.0-all.jar \
+            patch -b revanced-patches-4.6.0.jar \
             -m revanced-integrations-1.7.0.apk \
             -o yt-revanced.apk ./downloads/yt.apk
           
       - name: Start building YTM
         run: |
-          java -jar revanced-cli-4.5.0-all.jar \
-            patch -b revanced-patches-4.5.0.jar \
+          java -jar revanced-cli-4.6.0-all.jar \
+            patch -b revanced-patches-4.6.0.jar \
             -m revanced-integrations-1.7.0.apk \
             -o ytm-revanced.apk ./downloads/ytm.apk
           
